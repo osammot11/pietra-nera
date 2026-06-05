@@ -167,14 +167,11 @@
         </section>
 
         <section>
-            <h2 class="center-text">Valdinievole a passo lento</h2>
             <div class="grid-2 top-margin-xl visual-section">
                 <img src="/images/sgranar/copertina-sito.jpg" alt="Panorama collinare di Sgranar per Colli" loading="lazy" decoding="async">
-                <div class="center-items">
-                    <img class="hills-mark" src="/images/sgranar/colline-viola.svg" alt="Colline stilizzate Sgranar per Colli" loading="lazy" decoding="async">
-                    <p class="top-margin-large center-text">
-                        Un progetto popolare, colorato e conviviale: si parte per camminare, si resta per incontrarsi.
-                    </p>
+                <div>
+                    <h2>Valdinievole a passo lento</h2>
+                    <p class="top-margin-large">Un progetto popolare, colorato e conviviale: si parte per camminare, si resta per incontrarsi.</p>
                     <a href="/iscrizione" class="btn top-margin-xl mobile-fullwidth">Partecipa</a>
                 </div>
             </div>
