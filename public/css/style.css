@@ -1,0 +1,611 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary: #e43f32;
+    --primary-hover: #bd2f27;
+    --primary-soft: #ffd84d;
+
+    --bg-main: #fff8e8;
+    --bg-secondary: #eaf2ec;
+    --bg-card: #FFFFFF;
+    --bg-alt: #f4d95a;
+
+    --text-main: #241426;
+    --text-secondary: #4d2762;
+    --text-muted: #6b596e;
+    --text-disabled: #8C8C8C;
+    --text-white: #FFFFFF;
+
+    --border-light: #eadfc6;
+    --border-grey: #dddddd;
+    --radius-small: 6px;
+    --radius-big: 12px;
+
+    --font-base: "Barlow Condensed", sans-serif;
+}
+
+/* Backgrounds */
+
+.bg-primary-hover {
+    background-color: var(--primary-hover);
+}
+
+.bg-main {
+    background-color: var(--bg-main);
+}
+
+.bg-secondary {
+    background-color: var(--bg-secondary);
+}
+
+.bg-card {
+    background-color: var(--bg-card);
+}
+
+.bg-alt {
+    background-color: var(--bg-card);
+}
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--bg-main);
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Rimuove lo stile di default dei menu a tendina su tutti i browser */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Colore di sfondo base */
+    background-color: #ffffff;
+
+    /* Aggiunge una freccina personalizzata moderna e pulita tramite SVG */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.2em;
+
+    /* Fa spazio al testo per non sovrapporsi alla freccia */
+    padding-right: 2.5rem !important;
+}
+
+/* Opzionale: stile al passaggio del mouse o quando cliccato */
+select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    /* Un bel blu in stile Tailwind */
+    box-shadow: 0 0 0 1px #3b82f6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Tipografia */
+h1 {
+    font-size: 54px;
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 42px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 34px;
+    line-height: 1.25;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 28px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+h5 {
+    font-size: 26px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+h6 {
+    font-size: 24px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+p {
+    font-size: 21px;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    font-family: var(--font-base);
+}
+
+ol,
+ul {
+    margin-block-start: 24px;
+    padding-inline-start: 20px;
+}
+
+li {
+    font-weight: 300;
+}
+
+input,
+select {
+    border: solid 1px var(--border-grey);
+    border-radius: var(--radius-small);
+    padding: 9px;
+    font-size: 20px;
+    background-color: var(--bg-card);
+    font-family: var(--font-base);
+    color: var(--text-disabled);
+
+}
+
+label {
+    display: block;
+}
+
+/* Tipografia */
+.btn {
+    display: inline-block;
+    text-align: center;
+    font-family: var(--font-base);
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 16px 34px;
+    background-color: var(--primary);
+    color: var(--text-white);
+    border: solid 1px var(--primary);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--primary-hover);
+    border: solid 1px var(--primary-hover);
+}
+
+.btn-2 {
+    display: inline-block;
+    text-align: center;
+    font-family: var(--font-base);
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 16px 34px;
+    background-color: white;
+    color: var(--bg-secondary);
+    border: solid 1px white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-2:hover {
+    background: none;
+    color: white;
+}
+
+.grey-btn {
+    display: inline-block;
+    text-align: center;
+    font-family: var(--font-base);
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 16px 34px;
+    background-color: var(--text-disabled);
+    color: var(--text-white);
+    border: solid 1px var(--text-disabled);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.remove-btn {
+    margin-left: 20px;
+    display: inline-block;
+    text-align: center;
+    font-family: var(--font-base);
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 6px 20px;
+    background-color: #4f4f4f1a;
+    color: #4f4f4f;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    color: white;
+    background-color: #4f4f4f;
+    transform: scale(1.06);
+}
+
+.hyperlink {
+    text-decoration: none;
+    color: var(--primary-hover);
+    font-weight: 300;
+    font-family: var(--font-base);
+}
+
+.hyperlink:hover {
+    text-decoration: underline;
+}
+
+.hero-height {
+    min-height: 80vh
+}
+
+/* margini */
+
+.top-margin-small {
+    margin-top: 0.5rem;
+}
+
+.top-margin-mid {
+    margin-top: 1rem;
+}
+
+.top-margin-large {
+    margin-top: 1.5rem;
+}
+
+.top-margin-xl {
+    margin-top: 2.5rem;
+}
+
+.top-margin {
+    margin-top: 4rem;
+}
+
+
+/* STACK SYSTEM */
+
+.stack-small>*+* {
+    margin-top: 0.5rem;
+}
+
+.stack-mid>*+* {
+    margin-top: 1rem;
+}
+
+.stack-large>*+* {
+    margin-top: 1.5rem;
+}
+
+.stack-xl>*+* {
+    margin-top: 2.5rem;
+}
+
+.stack-xxl>*+* {
+    margin-top: 4rem;
+}
+
+
+.light-color {
+    color: var(--text-white);
+}
+
+.primary-color {
+    color: var(--primary);
+}
+
+.center-text {
+    text-align: center;
+}
+
+.center-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+section {
+    padding: 110px 12% 95px 12%;
+}
+
+/* Homepage */
+
+.topbar {
+    background-color: var(--primary);
+    min-height: 50px;
+}
+
+.home-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.9)),
+        url(images/hero.JPG);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-title {
+    font-size: 64px;
+    font-weight: 900;
+}
+
+/* Countdown */
+.countdown {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-box {
+    min-width: 90px;
+    border-radius: 14px;
+    color: var(--text-white);
+    text-align: center;
+}
+
+.time-box h2 {
+    font-size: 56px;
+}
+
+.time-box span {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.time-box small {
+    display: block;
+    margin-top: 6px;
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    color: var(--primary);
+}
+
+.dark-bg {
+    background-color: var(--text-secondary);
+}
+
+.card {
+    background-color: var(--bg-card);
+    color: var(--light-text-color);
+    padding: 45px;
+    border-bottom: solid 7px var(--primary);
+    border-right: solid 7px var(--primary);
+}
+
+.footer a {
+    margin-bottom: 20px;
+    color: var(--bg-alt);
+    text-decoration: none;
+}
+
+.standard-lateral-padding {
+    padding: 0px 12% 0px 12%;
+}
+
+.spunte-privacy {
+    display: block;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* ADMIN */
+
+.grid-8 {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr 1fr 1fr 1.6fr 1fr 1fr;
+    gap: 15px;
+}
+
+
+
+.lucide-icon {
+    transition: all 0.3s ease;
+}
+
+.lucide-icon:hover {
+    transform: translateY(-1px);
+}
+
+.layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 40px;
+}
+
+/* Checkout */
+
+.checkout-body {
+    padding: 2.5rem;
+}
+
+.checkout-wrapper {
+    max-width: 1200px;
+    padding: 2.5rem;
+    border-radius: var(--radius-big);
+    background-color: var(--bg-card);
+}
+
+.box-associazione {
+    padding: 1.5rem;
+    border-radius: var(--radius-small);
+    background-color: var(--bg-main);
+}
+
+.label-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.label-box input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.label-box label {
+    font-size: 22px;
+}
+
+.gap-20 {
+    gap: 25px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+    section {
+        padding: 80px 6% 70px 6%;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    h5 {
+        font-size: 16px;
+    }
+
+    h6 {
+        font-size: 15px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    small {
+        font-size: 13px;
+    }
+
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .grid-4 {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .countdown {
+        gap: 10px;
+    }
+
+    .time-box {
+        min-width: 70px;
+        padding: 12px 8px;
+    }
+
+    .time-box span {
+        font-size: 1.5rem;
+    }
+
+    .time-box h2 {
+        font-size: 32px;
+    }
+
+    .card {
+        padding: 30px;
+    }
+
+    .btn,
+    .btn-2 {
+        font-size: 15px;
+    }
+
+    .mobile-fullwidth {
+        width: 100%;
+    }
+
+    .standard-lateral-padding {
+        padding: 0px 6% 0px 6%;
+    }
+
+    .checkout-body {
+        padding: 1rem;
+    }
+
+    .checkout-wrapper {
+        padding: 1.5rem;
+    }
+}

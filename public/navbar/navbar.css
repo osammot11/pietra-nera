@@ -1,0 +1,138 @@
+:root {
+  --primary: #e43f32;
+  --primary-hover: #bd2f27;
+  --primary-soft: #ffd84d;
+
+  --bg-main: #fff8e8;
+  --bg-secondary: #eaf2ec;
+  --bg-card: #FFFFFF;
+  --bg-alt: #f4d95a;
+
+  --text-main: #241426;
+  --text-secondary: #4d2762;
+  --text-muted: #6b596e;
+  --text-disabled: #8C8C8C;
+  --text-white: #FFFFFF;
+
+  --border-light: #eadfc6;
+  --radius-small: 6px;
+  --radius-big: 12px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 80px;
+    width: 100%;
+
+    position: relative;
+    z-index: 998;
+
+    font-family: var(--font-base);
+    background-color: transparent;
+
+    transition:
+        background-color 0.45s ease,
+        backdrop-filter 0.3s ease,
+        -webkit-backdrop-filter 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.navbar.navbar-scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: rgba(17, 17, 17, 0.4);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Bottone hamburger */
+.hamburger {
+    position: absolute;
+    left: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+}
+
+.logo-vecchio {
+    position: absolute;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Logo */
+.logo a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+/* Menù laterale */
+.side-menu {
+    height: 100%;
+    width: 0;
+
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+
+    background-color: var(--text-secondary);
+    overflow-x: hidden;
+
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+.side-menu a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--primary);
+    display: block;
+    font-family: var(--font-base);
+}
+
+.hamburger-menu-link {
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu-link:hover {
+    transform: translateX(4px);
+}
+
+.close-x-icon {
+    transition: all 0.3s ease-out;
+}
+
+.close-x-icon:hover {
+    transform: rotate(180deg);
+}
+
+.hamburger-icon {
+    transition: all 0.4s ease;
+}
+
+.hamburger-icon:hover {
+    transform: scaleX(1.1);
+}
+
+.closebtn {
+    padding: 0px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    text-decoration: none;
+    color: black;
+}
