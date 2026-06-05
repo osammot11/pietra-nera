@@ -103,22 +103,22 @@
             <div class="grid-3 top-margin-xl">
                 <div class="card route-card stack-mid">
                     <span class="route-badge route-rosa">09:30</span>
-                    <h3 class="top-margin-large">Partenza Rosa</h3>
-                    <p class="top-margin-large">La prima onda della camminata, pensata per chi vuole partire presto e godersi il programma con calma.</p>
+                    <h3>Partenza Rosa</h3>
+                    <p>La prima onda della camminata, pensata per chi vuole partire presto e godersi il programma con calma.</p>
                     <a href="/iscrizione?percorso=Partenza%20Rosa" class="btn mobile-fullwidth">Iscriviti</a>
                 </div>
 
                 <div class="card route-card stack-mid">
                     <span class="route-badge route-bianca">10:15</span>
-                    <h3 class="top-margin-large">Partenza Bianca</h3>
-                    <p class="top-margin-large">Una fascia centrale per vivere il percorso con ritmo disteso, soste e atmosfera di gruppo.</p>
+                    <h3>Partenza Bianca</h3>
+                    <p>Una fascia centrale per vivere il percorso con ritmo disteso, soste e atmosfera di gruppo.</p>
                     <a href="/iscrizione?percorso=Partenza%20Bianca" class="btn mobile-fullwidth">Iscriviti</a>
                 </div>
 
                 <div class="card route-card stack-mid">
                     <span class="route-badge route-gialla">11:00</span>
-                    <h3 class="top-margin-large">Partenza Gialla</h3>
-                    <p class="top-margin-large">L’ultima partenza della mattina, ideale per chi vuole arrivare nel pieno della giornata al Parco Ox.</p>
+                    <h3>Partenza Gialla</h3>
+                    <p>L’ultima partenza della mattina, ideale per chi vuole arrivare nel pieno della giornata al Parco Ox.</p>
                     <a href="/iscrizione?percorso=Partenza%20Gialla" class="btn mobile-fullwidth">Iscriviti</a>
                 </div>
             </div>

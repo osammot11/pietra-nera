@@ -836,6 +836,10 @@ section {
     min-height: auto;
   }
 
+  .route-card .btn {
+    margin-top: 1rem;
+  }
+
   .fullwidth {
     width: 100%;
   }
