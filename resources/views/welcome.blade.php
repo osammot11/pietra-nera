@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iscrizione Sgranar per Colli</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css?v=1.5') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css?v=1.6') }}">
 </head>
 <body class="center-items checkout-body">
 

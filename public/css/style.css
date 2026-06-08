@@ -481,6 +481,62 @@ section {
     background-color: var(--bg-card);
 }
 
+.checkout-narrow {
+    max-width: 760px;
+    width: 100%;
+}
+
+.checkout-kicker {
+    color: var(--primary);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.checkout-summary {
+    padding: 1.5rem;
+    border-radius: var(--radius-small);
+    background-color: var(--bg-main);
+}
+
+.checkout-summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--text-main);
+}
+
+.checkout-summary-row strong {
+    font-weight: 700;
+}
+
+.checkout-summary-total {
+    padding-top: 1rem;
+    border-top: solid 1px var(--border-light);
+    font-size: 28px;
+}
+
+.stripe-payment-box {
+    padding: 1.5rem;
+    border: solid 1px var(--border-light);
+    border-radius: var(--radius-small);
+    background-color: var(--bg-card);
+}
+
+.payment-message {
+    padding: 1rem;
+    border-radius: var(--radius-small);
+    background-color: var(--bg-main);
+    color: var(--primary-hover);
+    font-weight: 500;
+}
+
+.btn:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
 .box-associazione {
     padding: 1.5rem;
     border-radius: var(--radius-small);

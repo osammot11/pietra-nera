@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
-use App\Jobs\SendTicketEmail;
-use Illuminate\Support\Str;
+use App\Services\OrderPaymentFinalizer;
 use Illuminate\Support\Facades\Log;
 
 class WebhookController extends Controller
@@ -25,7 +24,6 @@ class WebhookController extends Controller
             return response('Firma non valida', 400);
         }
 
-        // Se il pagamento è andato a buon fine!
         if ($event->type == 'checkout.session.completed') {
             $session = $event->data->object;
             
@@ -34,21 +32,24 @@ class WebhookController extends Controller
 
             $order = Order::with('tickets')->where('group_code', $orderCode)->first();
 
-            // Se l'ordine esiste ed era ancora in attesa
-            if ($order && $order->status !== 'paid') {
-                $order->update(['status' => 'paid']); // Ordine Pagato!
-                
-                // Sblocchiamo tutti i biglietti di quell'ordine
-                foreach ($order->tickets as $ticket) {
-                    $ticket->update([
-                        'status' => 'active',
-                        'unique_ticket_code' => 'TK_' . strtoupper(Str::random(8))
-                    ]);
-                    
-                    // SPARA L'EMAIL IN BACKGROUND!
-                    SendTicketEmail::dispatch($ticket);
-                }
+            if ($order) {
+                app(OrderPaymentFinalizer::class)->finalize($order);
                 Log::info("Ordine {$orderCode} pagato con successo tramite Webhook Stripe.");
+            }
+        }
+
+        if ($event->type == 'payment_intent.succeeded') {
+            $paymentIntent = $event->data->object;
+            $orderCode = $paymentIntent->metadata->group_code ?? null;
+
+            $order = Order::with('tickets')
+                ->when($orderCode, fn ($query) => $query->where('group_code', $orderCode))
+                ->when(! $orderCode, fn ($query) => $query->where('stripe_payment_intent_id', $paymentIntent->id))
+                ->first();
+
+            if ($order) {
+                app(OrderPaymentFinalizer::class)->finalize($order);
+                Log::info("Ordine {$order->group_code} pagato con successo tramite Payment Intent Stripe.");
             }
         }
 

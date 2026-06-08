@@ -8,6 +8,9 @@ use App\Http\Controllers\PageController;
 // Rotta per inviare i dati del modulo (POST)
 Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
+// Pagamento carta interno con Stripe Elements
+Route::get('/checkout/{order_code}/payment', [CheckoutController::class, 'payment'])->name('checkout.payment');
+
 // Rotta per il ritorno DOPO il pagamento confermato (GET)
 Route::get('/checkout/success/{order_code}', [CheckoutController::class, 'success'])->name('checkout.success');
 

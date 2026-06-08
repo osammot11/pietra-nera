@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Ticket;
+use App\Services\OrderPaymentFinalizer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Barryvdh\DomPDF\Facade\Pdf;
-use App\Jobs\SendTicketEmail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use RuntimeException;
@@ -62,10 +61,10 @@ class CheckoutController extends Controller
         // Il totale dell'ordine si calcola ESCLUSIVAMENTE sui biglietti paganti
         $totalAmount = $paidTicketsCount * $finalPricePerTicket;
 
-        if ($validatedData['payment_method'] === 'stripe' && blank(config('services.stripe.secret'))) {
+        if ($validatedData['payment_method'] === 'stripe' && (blank(config('services.stripe.secret')) || blank(config('services.stripe.key')))) {
             return back()
                 ->withInput()
-                ->withErrors(['payment_method' => 'Stripe non è configurato: manca STRIPE_SECRET nel file .env oppure la configurazione Laravel è in cache.']);
+                ->withErrors(['payment_method' => 'Stripe non è configurato: controlla STRIPE_SECRET e STRIPE_KEY nel file .env oppure la configurazione Laravel in cache.']);
         }
 
         // Aggiungiamo l'etichetta se è scattata la promo
@@ -128,44 +127,95 @@ class CheckoutController extends Controller
 
     private function processStripePayment(Order $order)
     {
+        $this->createOrRetrieveStripePaymentIntent($order);
+
+        return redirect()->route('checkout.payment', ['order_code' => $order->group_code]);
+    }
+
+    public function payment($order_code)
+    {
+        $order = Order::with('tickets')->where('group_code', $order_code)->firstOrFail();
+
+        if ($order->payment_method !== 'stripe') {
+            return redirect()->route('checkout.cancel', ['order' => $order->group_code])->with('error', 'Metodo di pagamento non valido per questo ordine.');
+        }
+
+        if ($order->status === 'paid') {
+            return redirect()->route('checkout.success', ['order_code' => $order->group_code]);
+        }
+
+        try {
+            $paymentIntent = $this->createOrRetrieveStripePaymentIntent($order);
+
+            if ($paymentIntent->status === 'succeeded') {
+                app(OrderPaymentFinalizer::class)->finalize($order);
+
+                return redirect()->route('checkout.success', ['order_code' => $order->group_code]);
+            }
+        } catch (Throwable $e) {
+            $order->update(['status' => 'payment_error']);
+            Log::error('Errore creazione Payment Intent Stripe', [
+                'order_id' => $order->id,
+                'group_code' => $order->group_code,
+                'message' => $e->getMessage(),
+            ]);
+
+            return redirect()->route('iscrizione')
+                ->withErrors(['payment_method' => 'Non siamo riusciti ad avviare il pagamento con carta. Riprova tra poco.']);
+        }
+
+        return view('checkout.payment', [
+            'order' => $order,
+            'clientSecret' => $paymentIntent->client_secret,
+            'stripeKey' => config('services.stripe.key'),
+        ]);
+    }
+
+    private function createOrRetrieveStripePaymentIntent(Order $order)
+    {
         $stripeSecret = config('services.stripe.secret');
 
-        if (blank($stripeSecret)) {
-            throw new RuntimeException('Stripe secret key non configurata.');
+        if (blank($stripeSecret) || blank(config('services.stripe.key'))) {
+            throw new RuntimeException('Stripe keys non configurate.');
         }
 
         \Stripe\Stripe::setApiKey($stripeSecret);
 
-        $lineItems = [];
-        foreach ($order->tickets as $ticket) {
-            // SALVAGENTE STRIPE: Inviamo a Stripe solo i biglietti che hanno un costo maggiore di zero.
-            if ($ticket->price_paid > 0) {
-                $lineItems[] = [
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'product_data' => [
-                            'name' => 'Iscrizione Sgranar per Colli - ' . $ticket->first_name . ' ' . $ticket->last_name,
-                            'description' => 'Taglia maglia: ' . $ticket->tshirt_size,
-                        ],
-                        'unit_amount' => intval($ticket->price_paid * 100), 
-                    ],
-                    'quantity' => 1,
-                ];
+        if ($order->stripe_payment_intent_id) {
+            try {
+                $paymentIntent = \Stripe\PaymentIntent::retrieve($order->stripe_payment_intent_id);
+
+                if ($paymentIntent->status !== 'canceled') {
+                    return $paymentIntent;
+                }
+            } catch (Throwable $e) {
+                Log::warning('Payment Intent Stripe non recuperabile, ne creo uno nuovo', [
+                    'order_id' => $order->id,
+                    'group_code' => $order->group_code,
+                    'stripe_payment_intent_id' => $order->stripe_payment_intent_id,
+                    'message' => $e->getMessage(),
+                ]);
             }
         }
 
-        $checkout_session = \Stripe\Checkout\Session::create([
+        $order->loadMissing('tickets');
+        $firstTicket = $order->tickets->first();
+
+        $paymentIntent = \Stripe\PaymentIntent::create([
+            'amount' => (int) round($order->total_amount * 100),
+            'currency' => 'eur',
             'payment_method_types' => ['card'],
-            'line_items' => $lineItems,
-            'mode' => 'payment',
-            'success_url' => route('checkout.success', ['order_code' => $order->group_code]),
-            'cancel_url' => route('checkout.cancel', ['order' => $order->group_code]),
-            'client_reference_id' => $order->group_code, 
+            'description' => 'Iscrizione Sgranar per Colli - Ordine ' . $order->group_code,
+            'receipt_email' => $firstTicket?->email,
+            'metadata' => [
+                'order_id' => (string) $order->id,
+                'group_code' => $order->group_code,
+            ],
         ]);
 
-        $order->update(['stripe_session_id' => $checkout_session->id]); 
+        $order->update(['stripe_payment_intent_id' => $paymentIntent->id]);
 
-        return redirect()->away($checkout_session->url);
+        return $paymentIntent;
     }
 
     private function processPaypalPayment(Order $order)
@@ -208,6 +258,7 @@ class CheckoutController extends Controller
 
         // 1. Se l'ordine risulta già pagato, mostriamo solo la vista.
         if ($order->status === 'paid') {
+            app(OrderPaymentFinalizer::class)->finalize($order);
             return view('checkout.success', compact('order'));
         }
 
@@ -221,13 +272,29 @@ class CheckoutController extends Controller
             $response = $provider->capturePaymentOrder($request->query('token'));
             
             if (isset($response['status']) && $response['status'] == 'COMPLETED') {
-                $order->update(['status' => 'paid']);
+                app(OrderPaymentFinalizer::class)->finalize($order);
             } else {
                 return redirect()->route('checkout.cancel', ['order' => $order->group_code])->with('error', 'Il pagamento PayPal non è stato autorizzato o è stato annullato.');
             }
         }
         
         // --- 3. VERIFICA PAGAMENTO STRIPE ---
+        elseif ($order->payment_method === 'stripe' && $order->stripe_payment_intent_id) {
+            $stripeSecret = config('services.stripe.secret');
+
+            if (blank($stripeSecret)) {
+                return redirect()->route('checkout.cancel', ['order' => $order->group_code])->with('error', 'Stripe non è configurato correttamente.');
+            }
+
+            \Stripe\Stripe::setApiKey($stripeSecret);
+            $paymentIntent = \Stripe\PaymentIntent::retrieve($order->stripe_payment_intent_id);
+            
+            if ($paymentIntent->status === 'succeeded') {
+                app(OrderPaymentFinalizer::class)->finalize($order);
+            } else {
+                return redirect()->route('checkout.cancel', ['order' => $order->group_code])->with('error', 'Il pagamento Stripe non è stato completato.');
+            }
+        }
         elseif ($order->payment_method === 'stripe' && $order->stripe_session_id) {
             $stripeSecret = config('services.stripe.secret');
 
@@ -237,9 +304,9 @@ class CheckoutController extends Controller
 
             \Stripe\Stripe::setApiKey($stripeSecret);
             $session = \Stripe\Checkout\Session::retrieve($order->stripe_session_id);
-            
+
             if ($session->payment_status == 'paid') {
-                $order->update(['status' => 'paid']);
+                app(OrderPaymentFinalizer::class)->finalize($order);
             } else {
                 return redirect()->route('checkout.cancel', ['order' => $order->group_code])->with('error', 'Il pagamento Stripe non è stato completato.');
             }
@@ -247,26 +314,13 @@ class CheckoutController extends Controller
         
         // --- 4. VERIFICA ORDINI A ZERO EURO (Promo Gruppi) ---
         elseif ($order->total_amount == 0) {
-            $order->update(['status' => 'paid']);
+            app(OrderPaymentFinalizer::class)->finalize($order);
         }
 
         // --- 5. AZIONI POST-PAGAMENTO VERIFICATO ---
         // Se l'ordine ha passato i controlli ed è "paid", attiviamo i biglietti
         if ($order->status === 'paid') {
-            foreach ($order->tickets as $ticket) {
-                
-                // Generiamo il codice univoco che prima mancava
-                $uniqueCode = $ticket->unique_ticket_code ?? 'TKT_' . strtoupper(\Illuminate\Support\Str::random(8));
-
-                // Aggiorniamo il biglietto nel database
-                $ticket->update([
-                    'status' => 'active',
-                    'unique_ticket_code' => $uniqueCode
-                ]); 
-                
-                // Inviamo la mail
-                SendTicketEmail::dispatch($ticket);
-            }
+            app(OrderPaymentFinalizer::class)->finalize($order);
             return view('checkout.success', compact('order'));
         }
 
