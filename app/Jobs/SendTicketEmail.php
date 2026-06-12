@@ -28,9 +28,9 @@ class SendTicketEmail implements ShouldQueue
         
         $htmlContent = "
             <h2>Ciao {$this->ticket->first_name}, iscrizione confermata!</h2>
-            <p>La tua partecipazione a Sgranar per Colli è ufficiale.</p>
+            <p>La tua partecipazione all'Hiking della Pietra Nera è ufficiale.</p>
             <p>Puoi accedere alla tua area riservata per scaricare il tuo biglietto nominale in PDF in qualsiasi momento:</p>
-            <p><a href='{$thankYouLink}' style='padding: 10px 20px; background-color: #e43f32; color: white; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px;'>Scarica il tuo Biglietto</a></p>
+            <p><a href='{$thankYouLink}' style='padding: 10px 20px; background-color: #ff9900; color: white; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px;'>Scarica il tuo Biglietto</a></p>
             <p>A presto!</p>
 
             <p>Se non riesci ad aprire il biglietto, copia e incolla nel browser questo link:</p>
@@ -45,8 +45,8 @@ class SendTicketEmail implements ShouldQueue
             'Accept' => 'application/json'
         ])->post('https://api.brevo.com/v3/smtp/email', [
             'sender' => [
-                'name' => env('BREVO_SENDER_NAME', 'Sgranar per Colli'),
-                'email' => env('BREVO_SENDER_EMAIL', 'info@sgranarpercolli.it')
+                'name' => env('BREVO_SENDER_NAME', 'Hiking della Pietra Nera'),
+                'email' => env('BREVO_SENDER_EMAIL', 'info@hikingdellapietranera.it')
             ],
             'to' => [
                 [
@@ -54,7 +54,7 @@ class SendTicketEmail implements ShouldQueue
                     'name' => $this->ticket->first_name . ' ' . $this->ticket->last_name
                 ]
             ],
-            'subject' => 'Iscrizione Confermata - Sgranar per Colli',
+            'subject' => 'Iscrizione Confermata - Hiking della Pietra Nera',
             'htmlContent' => $htmlContent
         ]);
 

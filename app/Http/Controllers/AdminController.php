@@ -254,7 +254,7 @@ class AdminController extends Controller
                 'email' => trim($row[2]) ?: 'no-email@test.com',
                 
                 // Scelte Maratona
-                'route_choice' => trim($row[3]) ?: 'Partenza Rosa',
+                'route_choice' => trim($row[3]) ?: 'Percorso Famiglie',
                 'tshirt_size' => trim($row[9]) ?: 'L',
                 
                 // Dati di Nascita e Documenti
@@ -329,7 +329,7 @@ class AdminController extends Controller
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'route_choice' => 'required|in:Partenza Rosa,Partenza Bianca,Partenza Gialla',
+            'route_choice' => 'required|in:Percorso Famiglie,Percorso Amatori',
             'dob' => 'required|date',
             'birth_place' => 'required|string|max:255',
             'residence_address' => 'required|string|max:255',

@@ -1,22 +1,26 @@
 :root {
-  --primary: #e43f32;
-  --primary-hover: #bd2f27;
-  --primary-soft: #ffd84d;
+    --primary: #ff9900;
+    --primary-hover: #c96f00;
+    --primary-soft: #3da8cc;
 
-  --bg-main: #fff8e8;
-  --bg-secondary: #eaf2ec;
-  --bg-card: #FFFFFF;
-  --bg-alt: #f4d95a;
+    --bg-main: #fff8ed;
+    --bg-secondary: #e9f4f4;
+    --bg-card: #FFFFFF;
+    --bg-alt: #ffe0ad;
 
-  --text-main: #241426;
-  --text-secondary: #4d2762;
-  --text-muted: #6b596e;
-  --text-disabled: #8C8C8C;
-  --text-white: #FFFFFF;
+    --text-main: #181f22;
+    --text-secondary: #243238;
+    --text-muted: #5f6769;
+    --text-disabled: #8C8C8C;
+    --text-white: #FFFFFF;
 
-  --border-light: #eadfc6;
-  --radius-small: 6px;
-  --radius-big: 12px;
+    --border-light: #ead9bd;
+    --border-grey: #dddddd;
+    --radius-small: 6px;
+    --radius-big: 12px;
+
+    --font-heading: 'Playfair Display', serif;
+    --font-base: system-ui, -apple-system;
 }
 
 .navbar {
@@ -45,7 +49,7 @@
     top: 0;
     left: 0;
 
-    background-color: rgba(17, 17, 17, 0.4);
+    background-color: rgba(24, 31, 34, 0.62);
 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -73,8 +77,21 @@
 /* Logo */
 .logo a {
     text-decoration: none;
-    color: black;
-    font-size: 20px;
+    color: var(--text-white);
+    font-size: 18px;
+}
+
+.navbar-logo {
+    width: 64px;
+    height: auto;
+    display: block;
+}
+
+.logo-wordmark {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: uppercase;
 }
 
 /* Menù laterale */

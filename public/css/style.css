@@ -1,27 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 :root {
-    --primary: #e43f32;
-    --primary-hover: #bd2f27;
-    --primary-soft: #ffd84d;
+    --primary: #ff9900;
+    --primary-hover: #c96f00;
+    --primary-soft: #3da8cc;
 
-    --bg-main: #fff8e8;
-    --bg-secondary: #eaf2ec;
-    --bg-card: #FFFFFF;
-    --bg-alt: #f4d95a;
+    --bg-main: #fff8ed;
+    --bg-secondary: #e9f4f4;
+    --bg-card: #ffffff;
+    --bg-alt: #ffe0ad;
 
-    --text-main: #241426;
-    --text-secondary: #4d2762;
-    --text-muted: #6b596e;
-    --text-disabled: #8C8C8C;
-    --text-white: #FFFFFF;
+    --text-main: #181f22;
+    --text-secondary: #243238;
+    --text-muted: #5f6769;
+    --text-disabled: #8c8c8c;
+    --text-white: #ffffff;
 
-    --border-light: #eadfc6;
+    --border-light: #ead9bd;
     --border-grey: #dddddd;
     --radius-small: 6px;
     --radius-big: 12px;
 
-    --font-base: "Barlow Condensed", sans-serif;
+    --font-heading: "Playfair Display", serif;
+    --font-base: system-ui, -apple-system;
 }
 
 /* Backgrounds */
@@ -82,9 +83,8 @@ select {
 /* Opzionale: stile al passaggio del mouse o quando cliccato */
 select:focus {
     outline: none;
-    border-color: #3b82f6;
-    /* Un bel blu in stile Tailwind */
-    box-shadow: 0 0 0 1px #3b82f6;
+    border-color: var(--primary-soft);
+    box-shadow: 0 0 0 1px var(--primary-soft);
 }
 
 * {
@@ -128,19 +128,20 @@ h6 {
     font-weight: 500;
 }
 
-p {
-    font-size: 21px;
-    line-height: 1.6;
-    font-weight: 300;
-}
-
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
+h6 {
+    margin: 0;
+    font-family: var(--font-heading);
+}
+
 p {
+    font-size: 21px;
+    line-height: 1.6;
+    font-weight: 300;
     margin: 0;
     font-family: var(--font-base);
 }
@@ -160,11 +161,10 @@ select {
     border: solid 1px var(--border-grey);
     border-radius: var(--radius-small);
     padding: 9px;
-    font-size: 20px;
+    font-size: 18px;
     background-color: var(--bg-card);
     font-family: var(--font-base);
     color: var(--text-disabled);
-
 }
 
 label {
@@ -175,7 +175,7 @@ label {
 .btn {
     display: inline-block;
     text-align: center;
-    font-family: var(--font-base);
+    font-family: var(--font-heading);
     font-weight: 500;
     font-size: 16px;
     text-decoration: none;
@@ -196,7 +196,7 @@ label {
 .btn-2 {
     display: inline-block;
     text-align: center;
-    font-family: var(--font-base);
+    font-family: var(--font-heading);
     font-weight: 500;
     font-size: 16px;
     text-decoration: none;
@@ -217,7 +217,7 @@ label {
 .grey-btn {
     display: inline-block;
     text-align: center;
-    font-family: var(--font-base);
+    font-family: var(--font-heading);
     font-weight: 500;
     font-size: 16px;
     text-decoration: none;
@@ -265,7 +265,7 @@ label {
 }
 
 .hero-height {
-    min-height: 80vh
+    min-height: 80vh;
 }
 
 /* margini */
@@ -290,29 +290,27 @@ label {
     margin-top: 4rem;
 }
 
-
 /* STACK SYSTEM */
 
-.stack-small>*+* {
+.stack-small > * + * {
     margin-top: 0.5rem;
 }
 
-.stack-mid>*+* {
+.stack-mid > * + * {
     margin-top: 1rem;
 }
 
-.stack-large>*+* {
+.stack-large > * + * {
     margin-top: 1.5rem;
 }
 
-.stack-xl>*+* {
+.stack-xl > * + * {
     margin-top: 2.5rem;
 }
 
-.stack-xxl>*+* {
+.stack-xxl > * + * {
     margin-top: 4rem;
 }
-
 
 .light-color {
     color: var(--text-white);
@@ -367,8 +365,9 @@ section {
 }
 
 .home-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.9)),
-        url(images/hero.JPG);
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.9)),
+        url(../images/hiking/hero.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -451,8 +450,6 @@ section {
     grid-template-columns: 1fr 1.6fr 1fr 1fr 1fr 1.6fr 1fr 1fr;
     gap: 15px;
 }
-
-
 
 .lucide-icon {
     transition: all 0.3s ease;
@@ -541,6 +538,7 @@ section {
     padding: 1.5rem;
     border-radius: var(--radius-small);
     background-color: var(--bg-main);
+    border: solid 1px var(--border-light);
 }
 
 .label-box {
@@ -555,7 +553,7 @@ section {
 }
 
 .label-box label {
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .gap-20 {
@@ -566,10 +564,9 @@ section {
     display: none;
 }
 
-
-
-
-
+.small-p {
+    font-size: 14px;
+}
 
 @media (max-width: 900px) {
     section {

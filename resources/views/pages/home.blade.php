@@ -5,8 +5,8 @@
     {
         "@@context": "https://schema.org",
         "@@type": "WebSite",
-        "name": "Sgranar per Colli",
-        "url": "https://sgranarpercolli.it/",
+        "name": "Hiking della Pietra Nera",
+        "url": "https://www.hikingdellapietranera.it/",
         "inLanguage": "it"
     }
     </script>
@@ -15,27 +15,27 @@
     {
         "@@context": "https://schema.org",
         "@@type": "SportsEvent",
-        "name": "Sgranar per Colli 2026",
-        "startDate": "2026-06-07T09:30:00+02:00",
+        "name": "Hiking della Pietra Nera 2027",
+        "startDate": "2027-05-16T08:00:00+02:00",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "eventStatus": "https://schema.org/EventScheduled",
-        "url": "https://sgranarpercolli.it/",
-        "image": "https://sgranarpercolli.it/images/2023/copertina_sito.jpg",
-        "description": "Camminata non competitiva tra le colline della Valdinievole, con partenze scaglionate e programma eventi dal 5 al 7 giugno 2026.",
+        "url": "https://www.hikingdellapietranera.it/",
+        "image": "{{ url('/images/hiking/logo.png') }}",
+        "description": "Camminata ludico motoria non competitiva sui sentieri di Uscio e Lumarzo, tra boschi, cave d'ardesia, storia locale e turismo lento.",
         "location": {
             "@@type": "Place",
-            "name": "Parco Ox Centro Giovani",
+            "name": "Area feste di Calcinara",
             "address": {
                 "@@type": "PostalAddress",
-                "addressLocality": "Borgo a Buggiano",
-                "addressRegion": "Toscana",
+                "addressLocality": "Uscio",
+                "addressRegion": "Liguria",
                 "addressCountry": "IT"
             }
         },
         "organizer": {
             "@@type": "Organization",
-            "name": "Sgranar per Colli",
-            "url": "https://sgranarpercolli.it/"
+            "name": "Hiking della Pietra Nera",
+            "url": "https://www.hikingdellapietranera.it/"
         }
     }
     </script>
@@ -44,14 +44,14 @@
 @section('content')
     <div class="home-hero">
         <section class="hero-height center-text light-color center-items">
-            <h3 class="primary-color">7 giugno 2026</h3>
-            <h1 class="top-margin-large hero-title">SGRANAR PER COLLI</h1>
-            <p class="top-margin-large hero-copy">La camminata più attesa della Valdinievole torna tra colline, borghi, sapori e tre giorni di festa.</p>
+            <h3 class="primary-color">16 maggio 2027</h3>
+            <h1 class="top-margin-large hero-title">HIKING DELLA PIETRA NERA</h1>
+            <p class="top-margin-large hero-copy">Una camminata ludico motoria non competitiva dove i monti incontrano il mare, tra storia, ardesia e turismo lento.</p>
             <a href="/iscrizione" class="btn top-margin-xl mobile-fullwidth">Acquista biglietti</a>
         </section>
 
         <section>
-            <div class="countdown" id="countdown" aria-label="Conto alla rovescia per Sgranar per Colli 2026">
+            <div class="countdown" id="countdown" aria-label="Conto alla rovescia per Hiking della Pietra Nera 2027">
                 <div class="time-box">
                     <h2 id="days">00</h2>
                     <small>Giorni</small>
@@ -75,17 +75,17 @@
     <main>
         <section class="grid-2 intro-section">
             <div>
-                <h2>Una festa da camminare</h2>
+                <h2>Sentieri tra monti e mare</h2>
                 <p class="top-margin-large">
-                    Sgranar per Colli porta il passo lento dentro la Valdinievole: percorsi a partenza scaglionata, soste di gusto, musica, market, laboratori e incontri nel verde di Borgo a Buggiano.
+                    L'Hiking della Pietra Nera nasce da un gruppo di amici appassionati del proprio territorio per far conoscere luoghi dove i monti incontrano il mare e la biodiversità si rivela a ogni passo.
                 </p>
                 <p class="top-margin-large">
-                    Dal 5 al 7 giugno il Parco Ox diventa il cuore del programma, con area food & beverage aperta nelle serate e la camminata in calendario domenica 7 giugno.
+                    Dopo la giornata condivisa sui sentieri di Uscio e Lumarzo, la prossima edizione è già in cammino: appuntamento al 16 maggio 2027.
                 </p>
             </div>
             <div class="card">
                 <div class="hero-top">
-                    <img src="/images/sgranar/asino-rosso.svg" alt="Asino rosso Sgranar per Colli" class="pellegrino" id="pellegrino">
+                    <img src="/images/hiking/logo.png" alt="Logo Hiking della Pietra Nera" class="pellegrino" id="pellegrino">
 
                     <div class="titolo-box center-text" id="titoloBox">
                         <div class="numero iscritti-title">{{ $totalIscritti }}</div>
@@ -93,74 +93,74 @@
                     </div>
                 </div>
                 <p class="iscritti-paragraph top-margin-large center-text">
-                    Le colline rendono meglio quando si cammina insieme. Se non lo hai già fatto, <a class="main-text-color" href="/iscrizione">iscriviti</a>.
+                    I sentieri sono più vivi quando si cammina insieme. Se non lo hai già fatto, <a class="main-text-color" href="/iscrizione">iscriviti</a>.
                 </p>
             </div>
         </section>
 
         <section id="percorsi">
-            <h2 class="center-text">Scegli la tua partenza</h2>
+            <h2 class="center-text">Scegli il tuo percorso</h2>
             <div class="grid-3 top-margin-xl">
                 <div class="card route-card stack-mid">
-                    <span class="route-badge route-rosa">09:30</span>
-                    <h3>Partenza Rosa</h3>
-                    <p>La prima onda della camminata, pensata per chi vuole partire presto e godersi il programma con calma.</p>
-                    <a href="/iscrizione?percorso=Partenza%20Rosa" class="btn mobile-fullwidth">Iscriviti</a>
+                    <span class="route-badge route-rosa">08:30</span>
+                    <h3>Percorso Famiglie</h3>
+                    <p>Un anello da 9,5 km con 260 m di ascesa e discesa, tra Calcinara, Colle Caprile, Monte Rosso, cave d'ardesia e panchina gigante.</p>
+                    <a href="/iscrizione?percorso=Percorso%20Famiglie" class="btn mobile-fullwidth">Iscriviti</a>
                 </div>
 
                 <div class="card route-card stack-mid">
-                    <span class="route-badge route-bianca">10:15</span>
-                    <h3>Partenza Bianca</h3>
-                    <p>Una fascia centrale per vivere il percorso con ritmo disteso, soste e atmosfera di gruppo.</p>
-                    <a href="/iscrizione?percorso=Partenza%20Bianca" class="btn mobile-fullwidth">Iscriviti</a>
+                    <span class="route-badge route-bianca">08:00</span>
+                    <h3>Percorso Amatori</h3>
+                    <p>Circa 20 km con 480 m di ascesa e discesa, passando da Terrile, Uscio, Colonia Arnaldi, Pannesi, Monte Cornua e ritorno a Calcinara.</p>
+                    <a href="/iscrizione?percorso=Percorso%20Amatori" class="btn mobile-fullwidth">Iscriviti</a>
                 </div>
 
                 <div class="card route-card stack-mid">
-                    <span class="route-badge route-gialla">11:00</span>
-                    <h3>Partenza Gialla</h3>
-                    <p>L’ultima partenza della mattina, ideale per chi vuole arrivare nel pieno della giornata al Parco Ox.</p>
-                    <a href="/iscrizione?percorso=Partenza%20Gialla" class="btn mobile-fullwidth">Iscriviti</a>
+                    <span class="route-badge route-gialla">Kit</span>
+                    <h3>Accoglienza</h3>
+                    <p>Accreditamento con anticipo, pettorale numerato, carta credenziali, maglietta tecnica, sacchetto rifiuti e gadget legato al territorio.</p>
+                    <a href="/regolamento" class="btn mobile-fullwidth">Regolamento</a>
                 </div>
             </div>
         </section>
 
         <section class="sgranar-band">
             <div>
-                <h2>5-6-7 giugno 2026</h2>
+                <h2>16 maggio 2027</h2>
                 <p class="top-margin-large">
-                    Tre giorni di appuntamenti: area relax, market, info point, libri, laboratori, degustazioni, land art e food & beverage nelle serate.
+                    La prossima edizione dell'Hiking della Pietra Nera riparte dai sentieri di Uscio e Lumarzo, con la stessa finalità: Sole, Salute, Vita.
                 </p>
             </div>
-            <a href="/iscrizione" class="btn btn-2 top-margin-large mobile-fullwidth">Biglietti camminata</a>
+            <a href="/iscrizione" class="btn btn-2 top-margin-large mobile-fullwidth">Biglietti hiking</a>
         </section>
 
         <section id="programma">
-            <h2 class="center-text">Programma eventi</h2>
+            <h2 class="center-text">Dati percorso</h2>
             <div class="grid-3 top-margin-xl">
                 <div class="card program-card">
-                    <h3>5 giugno</h3>
+                    <h3>Partenze</h3>
                     <ul class="program-list">
-                        <li><strong>17:00</strong> Apertura evento, market e area food.</li>
-                        <li><strong>18:00</strong> Incontri e presentazioni.</li>
-                        <li><strong>22:00</strong> Musica dal vivo e DJ set.</li>
+                        <li><strong>08:00</strong> Percorso Amatori da Calcinara.</li>
+                        <li><strong>08:30</strong> Percorso Famiglie da Calcinara.</li>
+                        <li><strong>17:30</strong> Chiusura indicativa della manifestazione.</li>
                     </ul>
                 </div>
 
                 <div class="card program-card">
-                    <h3>6 giugno</h3>
+                    <h3>Territorio</h3>
                     <ul class="program-list">
-                        <li><strong>17:00</strong> Market, laboratori e programma culturale.</li>
-                        <li><strong>18:30</strong> Rundagiata per Colli.</li>
-                        <li><strong>22:00</strong> Concerti e DJ set.</li>
+                        <li><strong>Uscio</strong> Creuze, caruggi, Pieve Romanica e Museo dell'Orologio.</li>
+                        <li><strong>Lumarzo</strong> Santuario di Nostra Signora del Bosco e frazione Pannesi.</li>
+                        <li><strong>Ardesia</strong> Cave di Monterosso e sentieri storici colombiani.</li>
                     </ul>
                 </div>
 
                 <div class="card program-card">
-                    <h3>7 giugno</h3>
+                    <h3>Iscrizioni</h3>
                     <ul class="program-list">
-                        <li><strong>08:30</strong> Bike per Colli.</li>
-                        <li><strong>09:30 / 10:15 / 11:00</strong> Partenze Sgranar.</li>
-                        <li><strong>13:00</strong> Festa, food e musica fino a sera.</li>
+                        <li><strong>Quota 2026</strong> Iscrizione base indicata a 22,00 euro.</li>
+                        <li><strong>Famiglie</strong> Prezzi speciali per adulti con bambini.</li>
+                        <li><strong>Info</strong> info@hikingdellapietranera.it</li>
                     </ul>
                 </div>
             </div>
@@ -168,10 +168,10 @@
 
         <section>
             <div class="grid-2 top-margin-xl visual-section">
-                <img src="/images/sgranar/copertina-sito.jpg" alt="Panorama collinare di Sgranar per Colli" loading="lazy" decoding="async">
+                <img src="/images/hiking/sentiero.jpg" alt="Escursionisti sui sentieri dell'Hiking della Pietra Nera" loading="lazy" decoding="async">
                 <div>
-                    <h2>Valdinievole a passo lento</h2>
-                    <p class="top-margin-large">Un progetto popolare, colorato e conviviale: si parte per camminare, si resta per incontrarsi.</p>
+                    <h2>Sole, Salute, Vita</h2>
+                    <p class="top-margin-large">Un progetto che non si esaurisce in una giornata di festa: il passato si preserva camminandolo, il futuro si costruisce facendolo conoscere.</p>
                     <a href="/iscrizione" class="btn top-margin-xl mobile-fullwidth">Partecipa</a>
                 </div>
             </div>
@@ -183,31 +183,31 @@
             <div class="faq-accordion top-margin-xl">
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
-                        <span>Quando si svolge Sgranar per Colli 2026?</span>
+                        <span>Quando si svolge la prossima edizione?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="top-margin-large">La camminata si svolge domenica 7 giugno 2026, dentro un programma eventi attivo dal 5 al 7 giugno.</p>
+                        <p class="top-margin-large">Il sito ufficiale indica che la prossima edizione dell'Hiking della Pietra Nera si svolgerà il 16 maggio 2027.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
-                        <span>Quali partenze posso scegliere?</span>
+                        <span>Quali percorsi posso scegliere?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="top-margin-large">Sono disponibili tre fasce: Partenza Rosa alle 09:30, Partenza Bianca alle 10:15 e Partenza Gialla alle 11:00.</p>
+                        <p class="top-margin-large">L'edizione 2026 prevedeva il Percorso Famiglie da 9,5 km alle 08:30 e il Percorso Amatori da circa 20 km alle 08:00.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false">
-                        <span>Dove si trova il cuore dell’evento?</span>
+                        <span>Dove si trova il cuore dell'evento?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="top-margin-large">Il programma fa riferimento al Parco Ox Centro Giovani, a Borgo a Buggiano in provincia di Pistoia.</p>
+                        <p class="top-margin-large">Il punto di partenza e arrivo indicato per i percorsi è l'area feste di Calcinara, nel territorio di Uscio, in Liguria.</p>
                     </div>
                 </div>
 
@@ -217,7 +217,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="top-margin-large">Puoi acquistare il tuo biglietto online dalla pagina <a href="/iscrizione" class="hyperlink">Iscrizione</a>.</p>
+                        <p class="top-margin-large">Puoi acquistare il tuo biglietto online dalla pagina <a href="/iscrizione" class="hyperlink">Iscrizione</a> e scegliere il percorso più adatto.</p>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@
     <main>
         <section>
             <h1>Partner</h1>
-            <p class="top-margin-large">Questa pagina è pronta per ospitare sponsor, associazioni, realtà locali e collaborazioni dell’edizione Sgranar per Colli 2026.</p>
+            <p class="top-margin-large">Questa pagina è pronta per ospitare sponsor, associazioni, realtà locali e collaborazioni dell'Hiking della Pietra Nera.</p>
         </section>
 
         <section class="grid-3">

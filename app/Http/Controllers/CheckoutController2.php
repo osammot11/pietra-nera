@@ -24,7 +24,7 @@ class CheckoutController extends Controller
             // ... [qui lascia tutta la validazione dei tickets.* che avevamo prima] ...
             'tickets.*.first_name' => 'required|string|max:255',
             'tickets.*.last_name' => 'required|string|max:255',
-            'tickets.*.route_choice' => 'required|in:Partenza Rosa,Partenza Bianca,Partenza Gialla',
+            'tickets.*.route_choice' => 'required|in:Percorso Famiglie,Percorso Amatori',
             'tickets.*.dob' => 'required|date',
             'tickets.*.birth_place' => 'required|string|max:255',
             'tickets.*.residence_address' => 'required|string|max:255',
@@ -105,7 +105,7 @@ class CheckoutController extends Controller
                 'price_data' => [
                     'currency' => 'eur',
                     'product_data' => [
-                        'name' => 'Iscrizione Sgranar per Colli - ' . $ticket->first_name . ' ' . $ticket->last_name,
+                        'name' => 'Iscrizione Hiking della Pietra Nera - ' . $ticket->first_name . ' ' . $ticket->last_name,
                         'description' => 'Taglia maglia: ' . $ticket->tshirt_size,
                     ],
                     // ECCO LA MAGIA: Moltiplichiamo il prezzo pagato per 100 (Stripe vuole i centesimi)
@@ -207,7 +207,7 @@ class CheckoutController extends Controller
         $pdf = Pdf::loadView('pdf.ticket', compact('ticket'));
         
         // Nome file pulito: Biglietto_Nome_Cognome.pdf
-        $fileName = 'Biglietto_Sgranar_' . str_replace(' ', '_', $ticket->last_name) . '.pdf';
+        $fileName = 'Biglietto_Hiking_Pietra_Nera_' . str_replace(' ', '_', $ticket->last_name) . '.pdf';
         
         return $pdf->download($fileName);
     }

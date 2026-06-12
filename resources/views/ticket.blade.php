@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Biglietto Sgranar per Colli</title>
+    <title>Biglietto Hiking della Pietra Nera</title>
     <style>
         body { font-family: 'Helvetica', 'Arial', sans-serif; color: #333; }
         .ticket-container { border: 2px dashed #000; padding: 20px; margin: 20px auto; max-width: 600px; text-align: center; }
@@ -16,7 +16,7 @@
 
     <div class="ticket-container">
         <div class="header">
-            Sgranar per Colli
+            Hiking della Pietra Nera
         </div>
         
         <div class="details">

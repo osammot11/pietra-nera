@@ -11,7 +11,9 @@
     </div>
 
     <div class="logo">
-        <img alt="Logo Sgranar per Colli" src="/images/sgranar/logo-bianco-rosso.svg" style="max-width: 130px">
+        <a class="logo-link" href="/">
+            <img class="navbar-logo" src="/images/hiking/logo.png" alt="Hiking della Pietra Nera">
+        </a>
     </div>
 </nav>
 
@@ -26,7 +28,7 @@
     <a class="hamburger-menu-link" href="/">Homepage</a>
     <a class="hamburger-menu-link" href="/iscrizione">Iscrizione</a>
     <a class="hamburger-menu-link" href="/#programma">Programma</a>
-    <a class="hamburger-menu-link" href="/#percorsi">Partenze</a>
+    <a class="hamburger-menu-link" href="/#percorsi">Percorsi</a>
     <a class="hamburger-menu-link" href="/regolamento">Regolamento</a>
     <a class="hamburger-menu-link" href="/contattaci">Contattaci</a>
     <a class="hamburger-menu-link" href="/partnership">Partnership</a>

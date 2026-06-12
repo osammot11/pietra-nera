@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iscrizione Sgranar per Colli</title>
+    <title>Iscrizione Hiking della Pietra Nera</title>
     <link rel="stylesheet" href="{{ asset('css/style.css?v=1.6') }}">
 </head>
 <body class="center-items checkout-body">
 
     <div class="checkout-wrapper stack-large">
-        <h1 class="center-text">Iscrizione Sgranar per Colli</h1>
+        <h1 class="center-text">Iscrizione Hiking della Pietra Nera</h1>
 
         <form action="{{ route('checkout.store') }}" method="POST" id="marathon-form">
             @if($errors->any())
@@ -53,10 +53,9 @@
                         <div class="label-box">
                             <label>Scelta del percorso</label>
                             <select name="tickets[0][route_choice]" required>
-                                <option value="">Scelta Partenza</option>
-                                <option value="Partenza Rosa" {{ request('percorso') == 'Partenza Rosa' ? 'selected' : '' }}>Partenza Rosa - 09:30</option>
-                                <option value="Partenza Bianca" {{ request('percorso') == 'Partenza Bianca' ? 'selected' : '' }}>Partenza Bianca - 10:15</option>
-                                <option value="Partenza Gialla" {{ request('percorso') == 'Partenza Gialla' ? 'selected' : '' }}>Partenza Gialla - 11:00</option>
+                                <option value="">Scelta percorso</option>
+                                <option value="Percorso Famiglie" {{ request('percorso') == 'Percorso Famiglie' ? 'selected' : '' }}>Percorso Famiglie - 08:30</option>
+                                <option value="Percorso Amatori" {{ request('percorso') == 'Percorso Amatori' ? 'selected' : '' }}>Percorso Amatori - 08:00</option>
                             </select>
                         </div>
 
@@ -173,13 +172,13 @@
                       <option value="paypal">PayPal</option>
                   </select>
               </div>
-            
-              <label>
+
+              <label class="small-p">
                   <input type="checkbox" value="1" checked required>Procedendo al pagamento dichiaro di accettare la <a href="/privacy-policy">privacy policy</a> e il <a href="/regolamento">regolamento</a> dell'evento
               </label>
 
-              <label>
-                  <input type="checkbox" value="1" checked required>Acconsento al trattamento dei miei dati particolari relativi alla salute (es. celiachia), forniti volontariamente, al fine di gestire correttamente le esigenze alimentari durante l’evento, ai sensi dell’art. 9 del Regolamento UE 2016/679 (GDPR).
+              <label class="small-p">
+                  <input class="small-p" type="checkbox" value="1" checked required>Acconsento al trattamento dei miei dati particolari relativi alla salute (es. celiachia), forniti volontariamente, al fine di gestire correttamente le esigenze alimentari durante l’evento, ai sensi dell’art. 9 del Regolamento UE 2016/679 (GDPR).
               </label>
 
               <button class="btn fullwidth" id="payment-button" type="submit">Procedi al Pagamento - {{ $currentPrice }}€</button>
@@ -216,13 +215,13 @@
             const regionSelect = block.querySelector('.region-select');
             regionSelect.innerHTML = '<option value="">Seleziona Regione</option>';
             Object.keys(italyLocations).sort().forEach(region => {
-                const isSelected = region === 'Toscana' ? 'selected' : '';
+                const isSelected = region === 'Liguria' ? 'selected' : '';
                 regionSelect.innerHTML += `<option value="${region}" ${isSelected}>${region}</option>`;
             });
             updateProvinces(regionSelect, true);
         }
 
-        function updateProvinces(regionSelect, setPistoiaDefault = false) {
+        function updateProvinces(regionSelect, setGenovaDefault = false) {
             const block = regionSelect.closest('.ticket-block');
             const provinceSelect = block.querySelector('.province-select');
             const region = regionSelect.value;
@@ -230,7 +229,7 @@
             provinceSelect.innerHTML = '<option value="">Seleziona Provincia</option>';
             if (italyLocations[region]) {
                 italyLocations[region].sort().forEach(prov => {
-                    const isSelected = (setPistoiaDefault && prov === 'Pistoia') ? 'selected' : '';
+                    const isSelected = (setGenovaDefault && prov === 'Genova') ? 'selected' : '';
                     provinceSelect.innerHTML += `<option value="${prov}" ${isSelected}>${prov}</option>`;
                 });
             }

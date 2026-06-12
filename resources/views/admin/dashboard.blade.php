@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Sgranar per Colli</title>
+    <title>Admin - Hiking della Pietra Nera</title>
     <link rel="stylesheet" href="{{ asset('css/style.css?v=1.7') }}">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>

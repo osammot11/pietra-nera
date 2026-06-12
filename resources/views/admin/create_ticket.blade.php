@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crea Biglietto Manuale - Sgranar per Colli</title>
+    <title>Crea Biglietto Manuale - Hiking della Pietra Nera</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
@@ -60,9 +60,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                     <select name="route_choice" required class="border p-2 rounded">
                         <option value="">-- Scelta Percorso --</option>
-                        <option value="Partenza Rosa" {{ old('route_choice') == 'Partenza Rosa' ? 'selected' : '' }}>Partenza Rosa - 09:30</option>
-                        <option value="Partenza Bianca" {{ old('route_choice') == 'Partenza Bianca' ? 'selected' : '' }}>Partenza Bianca - 10:15</option>
-                        <option value="Partenza Gialla" {{ old('route_choice') == 'Partenza Gialla' ? 'selected' : '' }}>Partenza Gialla - 11:00</option>
+                        <option value="Percorso Famiglie" {{ old('route_choice') == 'Percorso Famiglie' ? 'selected' : '' }}>Percorso Famiglie - 08:30</option>
+                        <option value="Percorso Amatori" {{ old('route_choice') == 'Percorso Amatori' ? 'selected' : '' }}>Percorso Amatori - 08:00</option>
                     </select>
 
                     <select name="tshirt_size" required class="border p-2 rounded">

@@ -27,7 +27,7 @@ class CheckoutController extends Controller
             'tickets.*.first_name' => 'required|string|max:255',
             'tickets.*.last_name' => 'required|string|max:255',
             'tickets.*.codice_fiscale' => 'nullable|string|max:16', 
-            'tickets.*.route_choice' => 'required|in:Partenza Rosa,Partenza Bianca,Partenza Gialla',
+            'tickets.*.route_choice' => 'required|in:Percorso Famiglie,Percorso Amatori',
             'tickets.*.dob' => 'required|date',
             'tickets.*.birth_place' => 'required|string|max:255',
             'tickets.*.residence_address' => 'required|string|max:255',
@@ -205,7 +205,7 @@ class CheckoutController extends Controller
             'amount' => (int) round($order->total_amount * 100),
             'currency' => 'eur',
             'payment_method_types' => ['card'],
-            'description' => 'Iscrizione Sgranar per Colli - Ordine ' . $order->group_code,
+            'description' => 'Iscrizione Hiking della Pietra Nera - Ordine ' . $order->group_code,
             'receipt_email' => $firstTicket?->email,
             'metadata' => [
                 'order_id' => (string) $order->id,
@@ -337,7 +337,7 @@ class CheckoutController extends Controller
         }
 
         $pdf = Pdf::loadView('pdf.ticket', compact('ticket'));
-        $fileName = 'Biglietto_Sgranar_' . str_replace(' ', '_', $ticket->last_name) . '.pdf';
+        $fileName = 'Biglietto_Hiking_Pietra_Nera_' . str_replace(' ', '_', $ticket->last_name) . '.pdf';
         
         return $pdf->download($fileName);
     }

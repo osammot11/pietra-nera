@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagamento - Sgranar per Colli</title>
+    <title>Pagamento - Hiking della Pietra Nera</title>
     <link rel="stylesheet" href="{{ asset('css/style.css?v=1.6') }}">
     <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -12,8 +12,7 @@
     <div class="checkout-wrapper checkout-narrow stack-large">
         <div class="stack-mid center-text">
             <p class="checkout-kicker">Ordine {{ $order->group_code }}</p>
-            <h1>Pagamento iscrizione</h1>
-            <p>Completa il pagamento con carta senza uscire dal sito.</p>
+            <h1>Completa la tua iscrizione</h1>
         </div>
 
         <div class="checkout-summary stack-mid">

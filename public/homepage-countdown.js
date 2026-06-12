@@ -1,24 +1,15 @@
-function getNextSgranarDate() {
-    const now = new Date();
-    let year = now.getFullYear();
-
-    const target = new Date(year, 5, 7, 9, 30, 0);
-
-    if (now > target) {
-      year++;
-    }
-
-    return new Date(year, 5, 7, 9, 30, 0);
+function getNextHikingDate() {
+    return new Date(2027, 4, 16, 8, 0, 0);
   }
 
-  const targetDate = getNextSgranarDate();
+  const targetDate = getNextHikingDate();
 
   function updateCountdown() {
     const now = new Date();
     const diff = targetDate - now;
 
     if (diff <= 0) {
-      document.getElementById("countdown").innerHTML = "Sgranar per Colli è iniziato!";
+      document.getElementById("countdown").innerHTML = "Hiking della Pietra Nera è iniziato!";
       return;
     }
 
