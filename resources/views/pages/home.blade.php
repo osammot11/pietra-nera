@@ -83,18 +83,14 @@
                     Dopo la giornata condivisa sui sentieri di Uscio e Lumarzo, la prossima edizione è già in cammino: appuntamento al 16 maggio 2027.
                 </p>
             </div>
-            <div class="card">
+            <div class="card primary-bg">
                 <div class="hero-top">
-                    <img src="/images/hiking/logo.png" alt="Logo Hiking della Pietra Nera" class="pellegrino" id="pellegrino">
 
-                    <div class="titolo-box center-text" id="titoloBox">
+                    <div class="titolo-box center-text light-color" id="titoloBox">
                         <div class="numero iscritti-title">{{ $totalIscritti }}</div>
                         <div class="label iscritti-subtitle">iscritti</div>
                     </div>
                 </div>
-                <p class="iscritti-paragraph top-margin-large center-text">
-                    I sentieri sono più vivi quando si cammina insieme. Se non lo hai già fatto, <a class="main-text-color" href="/iscrizione">iscriviti</a>.
-                </p>
             </div>
         </section>
 

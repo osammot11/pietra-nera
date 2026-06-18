@@ -174,18 +174,6 @@ li {
     min-height: 80vh;
 }
 
-.light-color {
-    color: var(--text-white);
-}
-
-.primary-color {
-    color: var(--primary);
-}
-
-.primary-hover-color {
-    color: var(--primary-hover);
-}
-
 .center-text {
     text-align: center;
 }
@@ -772,6 +760,22 @@ section {
 
 .stack-xxl > * + * {
     margin-top: 4rem;
+}
+
+.primary-bg {
+    background-color: var(--primary);
+}
+
+.light-color {
+    color: var(--text-white);
+}
+
+.primary-color {
+    color: var(--primary);
+}
+
+.primary-hover-color {
+    color: var(--primary-hover);
 }
 
 @media (max-width: 768px) {
