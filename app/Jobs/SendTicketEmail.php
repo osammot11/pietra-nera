@@ -24,8 +24,10 @@ class SendTicketEmail implements ShouldQueue
 
     public function handle()
     {
-        $thankYouLink = route('checkout.success', ['order_code' => $this->ticket->order->group_code]);
-        
+        $thankYouLink = route("checkout.success", [
+            "order_code" => $this->ticket->order->group_code,
+        ]);
+
         $htmlContent = "
             <h2>Ciao {$this->ticket->first_name}, iscrizione confermata!</h2>
             <p>La tua partecipazione all'Hiking della Pietra Nera è ufficiale.</p>
@@ -40,28 +42,34 @@ class SendTicketEmail implements ShouldQueue
 
         // Chiamata API diretta e leggerissima a Brevo
         $response = Http::withHeaders([
-            'api-key' => env('BREVO_API_KEY'),
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json'
-        ])->post('https://api.brevo.com/v3/smtp/email', [
-            'sender' => [
-                'name' => env('BREVO_SENDER_NAME', 'Hiking della Pietra Nera'),
-                'email' => env('BREVO_SENDER_EMAIL', 'info@hikingdellapietranera.it')
+            "api-key" => env("BREVO_API_KEY"),
+            "Content-Type" => "application/json",
+            "Accept" => "application/json",
+        ])->post("https://api.brevo.com/v3/smtp/email", [
+            "sender" => [
+                "name" => env("BREVO_SENDER_NAME", "Hiking della Pietra Nera"),
+                "email" => env(
+                    "BREVO_SENDER_EMAIL",
+                    "info@tommasogiovannoni.com",
+                ),
             ],
-            'to' => [
+            "to" => [
                 [
-                    'email' => $this->ticket->email,
-                    'name' => $this->ticket->first_name . ' ' . $this->ticket->last_name
-                ]
+                    "email" => $this->ticket->email,
+                    "name" =>
+                        $this->ticket->first_name .
+                        " " .
+                        $this->ticket->last_name,
+                ],
             ],
-            'subject' => 'Iscrizione Confermata - Hiking della Pietra Nera',
-            'htmlContent' => $htmlContent
+            "subject" => "Iscrizione Confermata - Hiking della Pietra Nera",
+            "htmlContent" => $htmlContent,
         ]);
 
         // Controllo errori
         if ($response->failed()) {
-            Log::error('Errore invio Brevo: ' . $response->body());
-            throw new \Exception('Chiamata API Brevo fallita.');
+            Log::error("Errore invio Brevo: " . $response->body());
+            throw new \Exception("Chiamata API Brevo fallita.");
         }
     }
 }
