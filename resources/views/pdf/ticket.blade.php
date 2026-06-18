@@ -16,7 +16,7 @@
 <body>
     <div class="ticket-container">
         <div class="header">
-            SGRANAR PER COLLI 2027
+            HIKING DELLA PIETRA NERA 2027
         </div>
         <p class="center-text">PARTENZE 08:00 / 08:30</p>
         <div class="details">
