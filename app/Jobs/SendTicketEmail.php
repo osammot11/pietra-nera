@@ -42,16 +42,13 @@ class SendTicketEmail implements ShouldQueue
 
         // Chiamata API diretta e leggerissima a Brevo
         $response = Http::withHeaders([
-            "api-key" => env("BREVO_API_KEY"),
+            "api-key" => config("services.brevo.api_key"),
             "Content-Type" => "application/json",
             "Accept" => "application/json",
         ])->post("https://api.brevo.com/v3/smtp/email", [
             "sender" => [
-                "name" => env("BREVO_SENDER_NAME", "Hiking della Pietra Nera"),
-                "email" => env(
-                    "BREVO_SENDER_EMAIL",
-                    "info@tommasogiovannoni.com",
-                ),
+                "name" => config("services.brevo.sender_name"),
+                "email" => config("services.brevo.sender_email"),
             ],
             "to" => [
                 [

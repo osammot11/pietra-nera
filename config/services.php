@@ -41,4 +41,10 @@ return [
         'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
     ],
 
+    'brevo' => [
+        'api_key' => env('BREVO_API_KEY'),
+        'sender_name' => env('BREVO_SENDER_NAME', 'Hiking della Pietra Nera'),
+        'sender_email' => env('BREVO_SENDER_EMAIL', 'info@tommasogiovannoni.com'),
+    ],
+
 ];
