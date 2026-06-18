@@ -16,9 +16,9 @@
 <body>
     <div class="ticket-container">
         <div class="header">
-            SGRANAR PER COLLI 2026
+            SGRANAR PER COLLI 2027
         </div>
-        <p class="center-text">7 GIUGNO - BORGO A BUGGIANO - PARTENZE 09:30 / 10:15 / 11:00</p>
+        <p class="center-text">PARTENZE 08:00 / 08:30</p>
         <div class="details">
             <p><strong>Partecipante:</strong> {{ $ticket->first_name }} {{ $ticket->last_name }}</p>
             <p><strong>Percorso:</strong> {{ $ticket->route_choice }}</p>
